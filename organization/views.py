@@ -34,8 +34,7 @@ def recruiter_signup(request):
             user.save()
 
             # create a new recruiter
-            company_email = Recruiter.objects.create(user=user, company_email=form.cleaned_data.get('company_email'))
-            company_name = Recruiter.objects.create(user=user, company_name=form.cleaned_data.get('company_name'))
+            recruiter = Recruiter.objects.create(user=user, company_email=form.cleaned_data.get('company_email'), company_name=form.cleaned_data.get('company_name'))
 
                 
             # log in the user and redirect to the home page
