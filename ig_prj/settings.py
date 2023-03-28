@@ -91,7 +91,7 @@ WSGI_APPLICATION = 'ig_prj.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'code2',
+        'NAME': 'code3',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',

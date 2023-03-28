@@ -20,4 +20,4 @@ class RecruiterSignupForm(UserCreationForm):
     
     class Meta:
         model = User
-        fields = ('username', 'email', 'company_name', 'password1', 'password2')
+        fields = ('username', 'email', 'company_name', 'password1', 'password2','company_email')
