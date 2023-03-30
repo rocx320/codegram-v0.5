@@ -42,16 +42,18 @@ class QuestionDetailView(DetailView):
     model = Question
 
     def get_context_data(self, *args, **kwargs):
-        context = super(QuestionDetailView, self).get_context_data()
-        something = get_object_or_404(Question, id=self.kwargs['pk'])
-        total_likes = something.total_likes()
+        context = super(QuestionDetailView, self).get_context_data(*args, **kwargs)
+        question = self.get_object()
+        total_likes = question.total_likes()
         liked = False
-        if something.likes.filter(id=self.request.user.id).exists():
+        if question.likes.filter(id=self.request.user.id).exists():
             liked = True
 
         context['total_likes'] = total_likes
         context['liked'] = liked
         return context
+    def total_likes(self):
+        return self.likes.count()
 
 class QuestionCreateView(LoginRequiredMixin, CreateView):
     model = Question
@@ -66,6 +68,7 @@ class QuestionCreateView(LoginRequiredMixin, CreateView):
 class QuestionUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
     model = Question
     fields = ['title', 'content', 'image']
+    template_name = 'questions/question-answer.html'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -76,6 +79,12 @@ class QuestionUpdateView(UserPassesTestMixin, LoginRequiredMixin, UpdateView):
         if self.request.user == questions.user:
             return True
         return False
+
+    def form_valid(self, form):
+        form.instance.question_id = self.kwargs['pk']
+        return super().form_valid(form)
+    def get_success_url(self):
+        return reverse_lazy('question-detail', args=[self.kwargs['pk']])
 
 class QuestionDeleteView(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
     model = Question
@@ -91,7 +100,7 @@ class QuestionDeleteView(UserPassesTestMixin, LoginRequiredMixin, DeleteView):
 class CommentDetailView(CreateView):
     model = Comment
     form_class = CommentForm
-    template_name = 'question-detail.html'
+    template_name = 'question-answer.html'
     
     def form_valid(self, form):
         form.instance.question_id = self.kwargs['pk']
@@ -102,9 +111,10 @@ class AddCommentView(CreateView):
     model = Comment
     form_class = CommentForm
     
-    template_name = 'question-answer.html'
+    template_name = 'questions/question-answer.html'
 
     def form_valid(self, form):
         form.instance.question_id = self.kwargs['pk']
         return super().form_valid(form)
-    success_url = reverse_lazy('question-lists')
+    def get_success_url(self):
+        return reverse_lazy('question-detail', args=[self.kwargs['pk']])

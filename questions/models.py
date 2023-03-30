@@ -12,6 +12,10 @@ class Question(models.Model):
     content = models.TextField(null=True,blank=True)
     date_created = models.DateTimeField(default=timezone.now())
     image = models.ImageField(upload_to='question_images', null=True, blank=True)
+    likes = models.ManyToManyField(User, related_name='liked_questions')
+    
+    def total_likes(self):
+        return self.likes.count()
     
     def __str__(self):
         return f'{self.user.username} - Question'

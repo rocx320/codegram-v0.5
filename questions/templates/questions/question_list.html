@@ -107,7 +107,8 @@
                     {% endif %}
                     <h6 id="fh6" style="font-size: 10px; font-style: italic; color: rgb(155, 155, 155);">Asked By: <a href="{% url 'profile' username=request.user.username %}">{{ question.user }}</a>&nbsp;&nbsp;&nbsp; |&nbsp;&nbsp;&nbsp; On: {{question.date_created|date:"j F, Y"}}</h6>
                     <h5 style="text-align: right; font-size: 12px; font-style: italic;">Tags</h5>
-                </div> <br>
+                </div>
+                 <br>
                 {% endfor %}
             </div>
         </div>   

@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'notification',
     'crispy_bootstrap4',
     'organization',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
