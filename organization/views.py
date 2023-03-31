@@ -1,8 +1,13 @@
-from django.contrib.auth import login
+from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect
 from .forms import StudentSignupForm, RecruiterSignupForm
 from .models import Student, Recruiter
 from django.contrib.auth import views as auth_views
+from django.http import HttpResponse
+from django.contrib import messages
+from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.decorators import login_required
+
 '''
 def student_signup(request):
     if request.method == 'POST':
@@ -39,7 +44,27 @@ def recruiter_signup(request):
                 
             # log in the user and redirect to the home page
             login(request, user)
-            return redirect('login')
+            return redirect('login.html')
     else:
         form = RecruiterSignupForm()
     return render(request, 'recruiter_signup.html', {'form': form})
+
+
+def recruiter_login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            if user.is_active and user.is_recruiter:
+                login(request, user)
+                messages.success(request, 'Login successfull')
+                print("Successfully logged in")
+                return redirect('home.html')
+            else:
+                messages.error(request, 'Invalid login credentials')
+        else:
+            messages.error(request, 'Invalid login credentials')
+
+    return render(request, 'home.html')

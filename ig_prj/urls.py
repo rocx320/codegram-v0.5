@@ -30,7 +30,7 @@ urlpatterns = [
     path('message/', include('directs.urls')),
     path('notifications/', include('notification.urls')),
     path('questions/', include('questions.urls')),
-    path('organization/', include('organization.urls')),
+    path('recruiter/', include('organization.urls')),
 
     # profile
     path('<username>/', UserProfile, name='profile'),
