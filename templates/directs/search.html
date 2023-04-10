@@ -49,7 +49,7 @@
                     {% if user.profile.first_name %}
                     <a href="{% url 'profile' user.username %}" style="font-size: 15px; color: black; text-align: center;">{{user.profile.first_name|title }} {{user.profile.last_name|title }}</a>
                     {% else%}
-                    <a href="{% url 'profile' user.username %}">Instagram User</a>
+                    <a href="{% url 'profile' user.username %}">Codegram User</a>
 
                     {% endif %}
                     <br>
@@ -68,52 +68,9 @@
       </div>
     </div>
 
-    <footer>
-      <div class="container">
-        <nav class="footer-nav">
-          <ul>
-            <li>
-              <a href="#">About us</a>
-            </li>
-            <li>
-              <a href="#">Support</a>
-            </li>
-            <li>
-              <a href="#">Press</a>
-            </li>
-            <li>
-              <a href="#">Api</a>
-            </li>
-            <li>
-              <a href="#">Jobs</a>
-            </li>
-            <li>
-              <a href="#">Privacy</a>
-            </li>
-            <li>
-              <a href="#">Terms</a>
-            </li>
-            <li>
-              <a href="#">Directory</a>
-            </li>
-            <li>
-              <a href="#">Profiles</a>
-            </li>
-            <li>
-              <a href="#">Hashtags</a>
-            </li>
-            <li>
-              <a href="#">Languages</a>
-            </li>
-          </ul>
-        </nav>
-        <div class="copyright-notice">
-          &copy 2019 Instagram
-        </div>
-      </div>
-    </footer>
+    
 
-  </div>
+  
 
 </body>
 

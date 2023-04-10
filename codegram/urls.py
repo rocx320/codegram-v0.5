@@ -31,13 +31,13 @@ urlpatterns = [
     path('notifications/', include('notification.urls')),
     path('questions/', include('questions.urls')),
     path('recruiter/', include('organization.urls')),
+    
 
     # profile
     path('<username>/', UserProfile, name='profile'),
     path('<username>/saved/', UserProfile, name='profilefavourite'),
     path('<username>/follow/<option>/', follow, name='follow'),
-    
-    
+
 ]
 
 # This is used for

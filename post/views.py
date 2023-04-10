@@ -13,13 +13,11 @@ from comment.forms import NewCommentForm
 from django.core.paginator import Paginator
 
 from django.views.generic import ListView
-
-
 from django.db.models import Q
 # from post.models import Post, Follow, Stream
 
 
-@login_required
+@login_required()  
 def index(request):
     user = request.user
     user = request.user

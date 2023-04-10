@@ -95,11 +95,9 @@
         <div class="questions">
           {% for question in questions %}
           <a href=""
-            ><img
-              src="{{question.image}}"
-              style="width: 50px"
-          /></a>
-          <div
+            >
+            <img src="{{question.image}}" style="width: 50px" /></a>
+          <div> 
             class="container"
             style="
               background: linear-gradient(
@@ -113,7 +111,7 @@
             "
           >
             <div id="title-sec" style="display: flex; align-items: center">
-            <a href=""><img src="{{ request.user.profile.image.url }}" style="width: 50px;"></a></img>
+            <a href=""><img src="{{ request.user.profile.image.url }}" style="width: 50px;"></a>
             <h3 id="fh3"><a href=""></a></h3>
             </div>
             <hr />

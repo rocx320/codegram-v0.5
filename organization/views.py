@@ -61,10 +61,45 @@ def recruiter_login(request):
                 login(request, user)
                 messages.success(request, 'Login successfull')
                 print("Successfully logged in")
-                return redirect('home.html')
+                return redirect('index1.html')
             else:
                 messages.error(request, 'Invalid login credentials')
         else:
             messages.error(request, 'Invalid login credentials')
 
-    return render(request, 'home.html')
+    return render(request, 'index1.html')
+
+
+def index1(request):
+    user = request.user
+    all_users = User.objects.all()
+    follow_status = Follow.objects.filter(following=user, follower=request.user).exists()
+
+    profile = Profile.objects.all()
+
+    posts = Stream.objects.filter(user=user)
+    group_ids = []
+
+    
+    for post in posts:
+        group_ids.append(post.post_id)
+        
+    post_items = Post.objects.filter(id__in=group_ids).all().order_by('-posted')
+
+    query = request.GET.get('q')
+    if query:
+        users = User.objects.filter(Q(username__icontains=query))
+
+        paginator = Paginator(users, 6)
+        page_number = request.GET.get('page')
+        users_paginator = paginator.get_page(page_number)
+
+
+    context = {
+        'post_items': post_items,
+        'follow_status': follow_status,
+        'profile': profile,
+        'all_users': all_users,
+        # 'users_paginator': users_paginator,
+    }
+    return render(request, 'index1.html', context)
