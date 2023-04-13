@@ -160,7 +160,7 @@ img { max-width: 100%; }
     color: inherit;
     padding: 20;
     cursor: pointer;
-    padding-left: 20px;
+    /* padding-left: 20px; */
     height: 30px;
 }
 .btn-primary {
@@ -875,3 +875,5 @@ img { max-width: 100%; }
         display: flex;
     }
 }
+
+

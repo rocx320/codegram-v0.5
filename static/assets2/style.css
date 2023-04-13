@@ -75,7 +75,7 @@ body {
 
 .form-data form input {
   padding: .8rem;
-  margin-bottom: .5rem;
+  /* margin-bottom: .5rem; */
   border: 2px solid #eee;
   border-radius: .4rem;
 }
@@ -260,4 +260,16 @@ footer .container {
   footer {
     padding-bottom: 2rem;
   }
+}
+
+/* Header Search */
+.headedr__search{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.headedr__search input {
+    
 }
